@@ -5,6 +5,7 @@ from rest_framework.response import Response
 # a Response is a dict that is converted to JSON
 from rest_framework import status
 from . import serializers
+from . import models
 
 class HelloApiView(APIView):
     """Test API View."""
@@ -103,3 +104,9 @@ class HelloViewSet(viewsets.ViewSet):
         """Handles removing an object."""
 
         return Response({'http_method': 'DELETE'})
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handles creating, reading, and updating profiles."""
+
+    serializer_class = serializers.UserProfilesSerializer
+    queryset = models.UserProfile.objects.all()
