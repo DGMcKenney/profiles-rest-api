@@ -6,6 +6,7 @@ router = DefaultRouter()
 router.register('hello-viewset', views.HelloViewSet, 'hello_viewset')
 router.register('profile', views.UserProfileViewSet)
 # when using a model viewset, don't need to specify base name (third arg in line 6)
+router.register('login', views.LoginViewSet, 'login')
 
 urlpatterns = [
     path('hello-view/', views.HelloApiView.as_view()),
