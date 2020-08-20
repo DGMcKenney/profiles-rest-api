@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 # a Response is a dict that is converted to JSON
-from rest_framework import status
-from . import serializers
-from . import models
+from rest_framework.authentication import TokenAuthentication
+from . import serializers, models, permissions
 
 class HelloApiView(APIView):
     """Test API View."""
@@ -110,3 +109,5 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.UserProfilesSerializer
     queryset = models.UserProfile.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.UpdateOwnProfile,)
